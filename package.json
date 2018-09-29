@@ -1,0 +1,29 @@
+{
+  "name": "rest-api-express-mongodb",
+  "version": "1.0.0",
+  "description": "Just Simple REST API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sangianpatrick/rest-api-express-mongodb.git"
+  },
+  "keywords": [
+    "rest",
+    "api",
+    "express",
+    "mongodb",
+    "mongoose"
+  ],
+  "author": "patrick maurits sangian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sangianpatrick/rest-api-express-mongodb/issues"
+  },
+  "homepage": "https://github.com/sangianpatrick/rest-api-express-mongodb#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
