@@ -21,6 +21,7 @@ app.use((req, res, next) => {
         res.header("Access-Controll-Allow-Methods", "PUT, POST, PATCH, DELETE, GET, PUT")
         return res.status(200).json({})
     }
+    next()
 })
 
 //routes which handle requests
