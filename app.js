@@ -2,9 +2,20 @@ const express = require('express')
 const app = express()
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
 
 const productRoutes = require('./api/routes/products')
 const ordersRoutes = require('./api/routes/orders')
+
+mongoose.connect('mongodb://rest-api-express-mongodb:nivilia290312@rest-api-express-mongodb-shard-00-00-npezu.mongodb.net:27017,rest-api-express-mongodb-shard-00-01-npezu.mongodb.net:27017,rest-api-express-mongodb-shard-00-02-npezu.mongodb.net:27017/test?ssl=true&replicaSet=rest-api-express-mongodb-shard-0&authSource=admin&retryWrites=true', {
+    useNewUrlParser: true
+})
+
+var db = mongoose.connection
+db.on('error', console.error.bind(console, 'connection error: '))
+db.once('open', () => {
+    console.log('connected to db!')
+})
 
 app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({

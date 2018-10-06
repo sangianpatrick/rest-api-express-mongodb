@@ -1,5 +1,9 @@
 const express = require('express')
 const router = express.Router()
+const mongoose = require('mongoose')
+// mongoose.Promise = require('bluebird')
+
+const Product = require('../models/product')
 
 router.get('/', (req, res, next) => {
     res.status(200).json({
@@ -8,29 +12,44 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-    const product = {
+
+    var product = new Product({
+        _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         price: req.body.price
-    }
-    res.status(201).json({
-        message: 'Product created.',
-        crated_product: product
     })
+
+    product.save()
+        .then(product => {
+            var result = product.toObject()
+            result.url = '/products/' + result._id
+            console.log(result)
+            res.status(201).json({
+                error: false,
+                message: 'Product created.',
+                crated_product: result
+            })
+        })
+        .catch(err => console.log(err))
+
+
 })
 
 router.get('/:productId', (req, res, next) => {
     const id = req.params.productId
-    if (id === 'special') {
+    const product = Product.find({
+        _id: id
+    }).exec()
+    product.then((doc) => {
         res.status(200).json({
-            message: 'You discover the special ID',
-            id: id
+            product: doc
         })
-    } else {
-        res.status(200).json({
-            message: 'You passed ad ID',
-            id: id
+    }).catch((err) => {
+        res.status(404).json({
+            error: true,
+            message: err
         })
-    }
+    })
 })
 
 router.patch('/:productId', (req, res, next) => {
