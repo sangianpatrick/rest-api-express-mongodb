@@ -6,8 +6,20 @@ const mongoose = require('mongoose')
 const Product = require('../models/product')
 
 router.get('/', (req, res, next) => {
-    res.status(200).json({
-        message: 'Handling GET requests to /products'
+    product = Product.find()
+    product.then(result => {
+        var products = []
+        result.forEach(function (item) {
+            var item = item.toObject()
+            item.access_link = {
+                uri: '/products/' + item._id,
+                method: 'GET'
+            }
+            products.push(item)
+        });
+        res.status(200).json({
+            product_list: products
+        })
     })
 })
 
