@@ -49,19 +49,20 @@ router.post('/', (req, res, next) => {
 
 router.get('/:productId', (req, res, next) => {
     const id = req.params.productId
-    const product = Product.find({
-        _id: id
-    }).exec()
-    product.then((doc) => {
-        res.status(200).json({
-            product: doc
+    const product = Product.find({})
+        .exec()
+    product
+        .then((doc) => {
+            res.status(200).json({
+                product: doc
+            })
         })
-    }).catch((err) => {
-        res.status(404).json({
-            error: true,
-            message: err
+        .catch((err) => {
+            res.status(404).json({
+                error: true,
+                message: err
+            })
         })
-    })
 })
 
 router.patch('/:productId', (req, res, next) => {
