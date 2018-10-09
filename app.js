@@ -23,6 +23,18 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(bodyParser.json())
 
+//header handler
+app.use((req, res, next) => {
+    if (req.headers.accept !== 'application/json') {
+        return res.status(406).json({
+            error: true,
+            message: "Request is not acceptable."
+        })
+    }
+
+    next()
+})
+
 //cors handler
 app.use((req, res, next) => {
     res.header("Access-Controll-Allow-Origin", "*")
