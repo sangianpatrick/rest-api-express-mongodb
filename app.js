@@ -42,7 +42,10 @@ app.use((req, res, next) => {
 
     if (req.method === 'OPTIONS') {
         res.header("Access-Controll-Allow-Methods", "PUT, POST, PATCH, DELETE, GET, PUT")
-        return res.status(200).json({})
+        return res.status(200).json({
+            error: true,
+            message: "Method Not Allowed"
+        })
     }
     next()
 })

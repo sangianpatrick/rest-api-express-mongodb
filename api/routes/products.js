@@ -15,7 +15,7 @@ router.get("/", (req, res, next) => {
                 method: ["GET", "PATCH", "PUT", "DELETE"],
                 headers: {
                     accept: 'application/json',
-                    authorization: 'Bearer token'
+                    authorization: 'Bearer tokenn'
                 }
             };
             products.push(item);
