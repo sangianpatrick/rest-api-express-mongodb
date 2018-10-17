@@ -87,10 +87,11 @@ router.get("/:productId", (req, res, next) => {
             });
         })
         .catch(err => {
-            res.status(500).json({
-                error: true,
-                message: err
-            });
+            // res.status(500).json({
+            //     error: true,
+            //     message: err
+            // });
+            next(err)
         });
 });
 
