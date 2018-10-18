@@ -7,7 +7,8 @@ require('dotenv').config()
 
 const routers = require('./routes/indexRouter')
 
-mongoose.connect(process.env.MONGO_URI, {
+const db_uri = (process.env.APP_ENV == 'development'? process.env.MONGO_URI_DEV : process.env.MONGO_URI_PRODUCTION)
+mongoose.connect(db_uri, {
     useCreateIndex: true,
     useNewUrlParser: true
 })

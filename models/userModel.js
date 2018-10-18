@@ -14,6 +14,10 @@ const userSchema = new mongoose.Schema({
             message: 'not a valid email'
         }
     },
+    isActive: {
+        type: Boolean,
+        default: true
+    },
     password: {
         type: String,
         validate: {

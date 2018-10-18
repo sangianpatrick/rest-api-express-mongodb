@@ -13,6 +13,6 @@ const userRouter = require('./userRouter')
 // index.use('/auth', authRouter)
 // index.use('/user', authorize(), userRouter)
 
-index.use('/user', userRouter)
+indexRouter.use('/user', userRouter)
 
 module.exports = indexRouter
