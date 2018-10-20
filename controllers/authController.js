@@ -21,9 +21,7 @@ const logIn = (req, res, next) => {
             }
         })
         .catch((error) =>{
-            //  next(error)
-            console.log('erorrrrrr')
-            console.error(error)
+             next(error)
         })
 }
 

@@ -8,7 +8,7 @@ const orderRouter = require('./orderRouter')
 const { authorize } = require('../middlewares/authMiddleware')
 
 indexRouter.get('/', (req, res, next) => {
-    res.status(200).json({ message: 'connected', test: req.headers.authorization })
+    res.status(200).json({ message: 'connected'})
 })
 indexRouter.use('/auth', authRouter)
 indexRouter.use('/user', authorize(), userRouter)

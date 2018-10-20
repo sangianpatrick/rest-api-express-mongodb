@@ -29,32 +29,14 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(bodyParser.json())
 
-//header handler
-app.use((req, res, next) => {
-    if (req.headers.accept !== 'application/json') {
-        return res.status(406).json({
-            error: true,
-            message: "Request is not acceptable."
-        })
-    }
-
-    next()
-})
 
 //cors handler
-app.use((req, res, next) => {
-    res.header("Access-Controll-Allow-Origin", "*")
-    res.header("Access-Controll-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization")
-    res.header("Access-Controll-Allow-Methods", "POST, PATCH, DELETE, GET, PUT")
-    if (req.method === 'OPTIONS') {
-        res.header("Access-Controll-Allow-Methods", "POST, PATCH, DELETE, GET, PUT")
-        return res.status(405).json({
-            error: true,
-            message: "Method Not Allowed"
-        })
-    }
-    next()
-})
+app.use(function (req, res, next) {
+    // console.log(req.headers)
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+    next(); 
+});
 
 //routes which handle requests
 app.use('/', routers)
