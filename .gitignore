@@ -1,1 +1,4 @@
-node_modules
+/node_modules
+testCrypto.js
+testJwt.js
+.env

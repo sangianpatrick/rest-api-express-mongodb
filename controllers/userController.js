@@ -39,29 +39,35 @@ const addUser = (req, res, next) => {
 const getAllUser = (req, res, next) => {
     User.find()
     .then((result) => {
-        var users = []
-        result.forEach(function(user){
-            var data = {
-                id: user._id,
-                firstname: user.firstName,
-                lastname: user.lastName,
-                email: user.email,
-                is_active: user.isActive,
-                access_link: {
-                    uri: '/user/' + user._id,
-                    method: ['GET', 'PATCH', 'DELETE'],
-                    header: {
-                        accept: 'application/json',
-                        authorization: 'Bearer <token>'
+        if(result.length > 0){
+            var users = []
+            result.forEach(function(user){
+                var data = {
+                    id: user._id,
+                    firstname: user.firstName,
+                    lastname: user.lastName,
+                    email: user.email,
+                    is_active: user.isActive,
+                    access_link: {
+                        uri: '/user/' + user._id,
+                        method: ['GET', 'PATCH', 'DELETE'],
+                        header: {
+                            accept: 'application/json',
+                            authorization: 'Bearer <token>'
+                        }
                     }
                 }
-            }
-            users.push(data)
-        })
-        res.status(200).json({
-            message: 'list all of user',
-            result: users
-        })
+                users.push(data)
+            })
+            res.status(200).json({
+                message: 'list all of user',
+                result: users
+            })
+        }else{
+            res.status(204).json({
+                message: 'no content'
+            })
+        }
     })
     
 }

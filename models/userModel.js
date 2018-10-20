@@ -34,13 +34,13 @@ userSchema.plugin(mongooseUniqueValidator, {
     message: 'have been registered'
 })
 
-userSchema.statics.findByEmail = (email) => {
+userSchema.statics.findByEmail = function(email) {
     return this.findOne({
         'email': email
     })
 }
 
-userSchema.methods.validPassword = (password) => {
+userSchema.methods.validPassword = function(password){
     return this.password === hashString(password, this.password_salt)
 }
 

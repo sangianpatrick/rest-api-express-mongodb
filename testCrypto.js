@@ -1,6 +1,6 @@
 const {generateRandomString, hashString} = require('./helpers/cryptoHelper')
 
-
+const newSalt = '8e2ed6cac9'
 const salt = generateRandomString(10)
-const value = hashString('P@ssw0rd', salt)
+const value = hashString('Passw0rd', newSalt)
 console.log(value)

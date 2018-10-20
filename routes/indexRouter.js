@@ -1,18 +1,18 @@
 const indexRouter = require('express').Router()
 
-// const authRouter = require('./authRouter')
+const authRouter = require('./authRouter')
 const userRouter = require('./userRouter')
+const productRouter = require('./productRouter')
+const orderRouter = require('./orderRouter')
 
-// const { authorize } = require('../middlewares/authMiddleware')
+const { authorize } = require('../middlewares/authMiddleware')
 
-
-// index.get('/', (req, res, next) => {
-//     res.status(200).json({ message: 'connected' })
-// })
-
-// index.use('/auth', authRouter)
-// index.use('/user', authorize(), userRouter)
-
-indexRouter.use('/user', userRouter)
+indexRouter.get('/', (req, res, next) => {
+    res.status(200).json({ message: 'connected', test: req.headers.authorization })
+})
+indexRouter.use('/auth', authRouter)
+indexRouter.use('/user', authorize(), userRouter)
+indexRouter.use('/product', authorize(), productRouter)
+indexRouter.use('/order', authorize(), orderRouter)
 
 module.exports = indexRouter
