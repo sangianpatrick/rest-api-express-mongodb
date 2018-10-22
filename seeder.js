@@ -36,4 +36,4 @@ function addUser(u_count){
     
 }
 
-addUser(120)
+addUser(3)

@@ -28,6 +28,8 @@ const userSchema = new mongoose.Schema({
     password_salt: {
         type: String
     }
+},{
+    timestamps: true
 })
 
 userSchema.plugin(mongooseUniqueValidator, {

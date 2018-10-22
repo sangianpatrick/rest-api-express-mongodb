@@ -48,6 +48,7 @@ const getAllUser = (req, res, next) => {
                     lastname: user.lastName,
                     email: user.email,
                     is_active: user.isActive,
+                    created_at: user._id.getTimestamp(),
                     access_link: {
                         uri: '/user/' + user._id,
                         method: ['GET', 'PATCH', 'DELETE'],

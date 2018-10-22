@@ -8,7 +8,8 @@ const authorize = function(){
                 res.status(401).json({error})
                 // console.log(error)
             }else{
-                req.user = {id: decoded.email, name: decoded.name}
+                req.user = {id: decoded.id}
+                console.log(req.user)
                 next()
             }
         })
