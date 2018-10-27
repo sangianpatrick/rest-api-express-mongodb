@@ -18,6 +18,9 @@ db.once('open', () => {
 // console.log(faker.name.lastName())
 // console.log(faker.internet.email())
 
+function test(){
+    console.log('asdfasdf')
+}
 
 function addUser(u_count){
     if(u_count == 0){
@@ -33,6 +36,7 @@ function addUser(u_count){
         .then((new_user) =>{ console.log(new_user);addUser(u_count-1) })
         .catch((error) => { console.log(error) })
     }, 1500)
+    test()
     
 }
 

@@ -18,7 +18,7 @@ const bearerAuth = (req, cb) =>{
 }
 
 const generateAuthToken = (user, req, res, next) => {
-    jwt.sign({id: user._id}, process.env.SECRET_KEY,(error, token) => {
+    jwt.sign({iss: process.env.APP_DOMAIN, id: user._id}, process.env.SECRET_KEY,(error, token) => {
         if(error){
             console.log('jwt error')
             next()
